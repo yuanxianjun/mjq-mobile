@@ -216,7 +216,7 @@
 			},
 			//获取库名列表
 			getDataBase() {
-				this.axios.post("/show_database/").then(response => {
+				this.axios.get("/show_database/").then(response => {
 					this.menuList = response.data.data;
 					this.detailMenuList();
 				});
