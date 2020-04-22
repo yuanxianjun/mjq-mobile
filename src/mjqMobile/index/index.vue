@@ -162,15 +162,16 @@
 			login(){
 				this.axios.get("/passport/allow_login/").then(response => {
 					let code = response.data.code;
-					if(code == 200){
+					console.log(response)
+					
+					if(code == '200'){
 						this.name = response.data.name;
-					}
-					else if(code == 0){
+					}else {
 						this.$message({
 					          message: '请先登录',
 					          type: 'warning'
 					        });
-						window.location.href="http://127.0.0.1:5000/index/"
+						window.location.href="http://127.0.0.1:5000/"
 					}
 				});
 			},
@@ -194,7 +195,7 @@
 			getTable() {
 				console.log(this.dbname,this.selectValue,this.sqlText)
 				
-				this.axios.post("/send_sql/",{
+				this.axios.post("/news/send_sql/",{
 					type:this.selectValue * 1,
 					data:this.sqlText,
 					database:this.dbname
@@ -204,7 +205,7 @@
 				});
 				
 				if(this.sqlText.includes("insert")){
-					this.axios.post("/send_sql/",{
+					this.axios.post("/news/send_sql/",{
 						type:this.selectValue * 1,
 							data:'select * from news',
 							database:this.dbname
@@ -216,7 +217,7 @@
 			},
 			//获取库名列表
 			getDataBase() {
-				this.axios.get("/show_database/").then(response => {
+				this.axios.get("/news/show_database/").then(response => {
 					this.menuList = response.data.data;
 					this.detailMenuList();
 				});
@@ -230,7 +231,7 @@
 //				        "news"
 //				    ]
 //				)
-				this.axios.get("/show_table/",{
+				this.axios.get("/news/show_table/",{
 					params: {
 						      database: this.dbname
 						    }
