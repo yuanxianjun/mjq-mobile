@@ -30,7 +30,8 @@ export default {
 
       let nameData = [],
         valueData = [];
-
+			
+		
       val.forEach((item, index) => {
         nameData.push(Object.keys(item)[0]);
         valueData.push(Object.values(item)[0]);

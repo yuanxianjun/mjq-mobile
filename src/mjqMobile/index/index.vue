@@ -206,68 +206,7 @@ export default {
       dataArea: [],
       showMore: false,
       showMoreArea: false,
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "27.5%",
-          address: "27.5%"
-        },
-        {
-          date: "2016-05-04",
-          name: "27.5%",
-          address: "27.5%"
-        },
-        {
-          date: "2016-05-01",
-          name: "27.5%",
-          address: "27.5%"
-        },
-        {
-          date: "王小虎",
-          name: "27.5%",
-          address: "27.5%"
-        },
-        {
-          date: "小镇",
-          name: "20%",
-          address: "27.5%"
-        },
-        {
-          date: "小镇",
-          name: "20%",
-          address: "27.5%"
-        },
-        {
-          date: "小镇",
-          name: "20%",
-          address: "27.5%"
-        },
-        {
-          date: "小镇",
-          name: "20%",
-          address: "27.5%"
-        },
-        {
-          date: "小镇",
-          name: "20%",
-          address: "27.5%"
-        },
-        {
-          date: "小镇",
-          name: "20%",
-          address: "27.5%"
-        },
-        {
-          date: "小镇",
-          name: "20%",
-          address: "27.5%"
-        },
-        {
-          date: "小镇",
-          name: "20%",
-          address: "27.5%"
-        }
-      ],
+      tableData: [],
       todayData: {
         receive: 0,
         send: 0,
@@ -287,9 +226,9 @@ export default {
         monthAreaList: []
       },
       activeName: {
-        noactiveName: "村/社区派单数量",
+        noactiveName: "部门派单数量",
         headerName: "村(社区)名称",
-        topName: "部门派单数量"
+        topName: "村/社区派单数量"
       }
     };
   },
@@ -327,14 +266,22 @@ export default {
           headerName: "部门名称",
           noactiveName: "村/社区派单数量"
         };
-        this.$refs.year12345.setOption(this.yearData.departmentList);
+        var data = Array.from(this.yearData.departmentList)
+       data=  data.filter(item => {
+        	let key = Object.keys(item)[0]        	
+        	       		
+        		return (key != '主要领导' && key !== '主管领导')	
+        	    	
+        })
+		console.log(data)
+        this.$refs.year12345.setOption(data);
       } else {
         this.activeName = {
           topName: "村/社区派单数量",
           headerName: "村(社区)名称",
           noactiveName: "部门派单数量"
         };
-        this.$refs.year12345.setOption(this.yearData.countrysideList);
+        this.$refs.year12345.setOption(this.yearData.countrysideList );
       }
     },
     // 今日接派单情况和今日各村、各部门接单统计
