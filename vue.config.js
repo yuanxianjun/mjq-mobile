@@ -4,7 +4,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
     baseUrl: './',
     lintOnSave: false,
-    outputDir: 'dist/mjqMobile',
+    outputDir: 'dist/database',
     productionSourceMap: false,
 
     devServer: {
