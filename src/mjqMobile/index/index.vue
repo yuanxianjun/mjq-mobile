@@ -9,7 +9,7 @@
 				
 				<div class="person">
 					<i class="el-icon-user-solid"></i>
-					<a class="">root</a>
+					<a class="" href="http://127.0.0.1:5000/profile//user_info">{{name}}</a>
 				</div>
 				<a  class="rootPage" href="http://127.0.0.1:5000">首页</a>
 				
@@ -123,6 +123,7 @@
 		components: {},
 		data() {
 			return {
+				name:"",
 				dbname:"",				
 				sqlText: "",
 				//菜单按钮
@@ -157,11 +158,18 @@
 		},
 		updated() {},
 		methods: {
-			//判断是否成功登录
+//			判断是否成功登录
 			login(){
 				this.axios.get("/passport/allow_login/").then(response => {
 					let code = response.data.code;
-					if(code == 0){
+					if(code == 200){
+						this.name = response.data.name;
+					}
+					else if(code == 0){
+						this.$message({
+					          message: '请先登录',
+					          type: 'warning'
+					        });
 						window.location.href="http://127.0.0.1:5000/index/"
 					}
 				});
