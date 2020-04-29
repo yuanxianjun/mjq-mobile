@@ -79,15 +79,14 @@
 							</div>
 						</div>
 						<el-table :data="plain_text" stripe max-height="220" border style="width: 100%">
-							<el-table-column   type="index" width="180" align="center">
+						
+							<el-table-column prop="title"  align="center" width="180">
 							</el-table-column>
-							<el-table-column prop="title" label="标题" align="center" width="180">
+							<el-table-column prop="name" align="center" width="180">
 							</el-table-column>
-							<el-table-column prop="name" label="名称" align="center" width="180">
+							<el-table-column prop="content" align="center" 
 							</el-table-column>
-							<el-table-column prop="content" align="center" label="内容">
-							</el-table-column>
-							<el-table-column prop="numbers" align="center" label="numbers">
+							<el-table-column prop="numbers" align="center" >
 							</el-table-column>
 						</el-table>
 					</div>
@@ -100,15 +99,13 @@
 							</div>
 						</div>
 						<el-table :data="cipher_text" stripe max-height="220" border style="width: 100%">
-							<el-table-column prop="id" label="" width="180" align="center">
+							<el-table-column prop="title"  align="center" width="180">
 							</el-table-column>
-							<el-table-column prop="title" label="标题" align="center" width="180">
+							<el-table-column prop="name"  align="center" width="180">
 							</el-table-column>
-							<el-table-column prop="name" label="名称" align="center" width="180">
+							<el-table-column prop="content" align="center" >
 							</el-table-column>
-							<el-table-column prop="content" align="center" label="内容">
-							</el-table-column>
-							<el-table-column prop="numbers" align="center" label="numbers">
+							<el-table-column prop="numbers" align="center" >
 							</el-table-column>
 						</el-table>
 					</div>
@@ -142,7 +139,7 @@
 					label: 'RSA加密'
 				}],
 				selectValue: '1',
-					"cipher_text": [],					
+					"cipher_text": [],
 					"plain_text": [],				
 			}
 		},
@@ -162,11 +159,11 @@
 			login(){
 				this.axios.get("/passport/allow_login/").then(response => {
 					let code = response.data.code;
-					console.log(response)
+
 					
 					if(code == '200'){
 						this.name = response.data.name;
-					}else {
+					}else if(code == '0') {
 						this.$message({
 					          message: '请先登录',
 					          type: 'warning'
