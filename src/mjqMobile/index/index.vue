@@ -237,7 +237,7 @@ export default {
     this.getDistributorYear();
     this.getTodayData();
     this.getSituation();
-    this.yearAndMonth("true");
+    this.yearAndMonth("false");
   },
   updated() {},
   methods: {
@@ -291,7 +291,7 @@ export default {
         if (this.todayData.countrysideList) {
           this.$refs.todayVillage.setOption(this.todayData.countrysideList);
         }
-        if (this.todayData.countrysideList) {
+        if (this.todayData.departmentList) {
           this.$refs.echartsDepartment.setOption(this.todayData.departmentList);
         }
       });
